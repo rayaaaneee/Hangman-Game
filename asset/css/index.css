@@ -1,0 +1,74 @@
+.title-page {
+    text-align: center;
+}
+
+.subtitle-page {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.main-container {
+    width: fit-content;
+    height: fit-content;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.logo-site {
+    width: 10%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.form-main-page {
+    margin: 0;
+    margin-top: 30px;
+    height: fit-content;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+}
+
+.form-main-page input {
+    height: 30px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 0 15px;
+    font-size: 1em;
+    font-weight: 300;
+    outline: none;
+    border : none;
+}
+
+.form-main-page button[type="submit"] {
+    margin-top: 15px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.form-main-page button[type="submit"]:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.choose-word-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+    margin-top: 30px;
+}
