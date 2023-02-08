@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 06 fév. 2023 à 22:00
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.4.6
+-- Host: localhost:8889
+-- Generation Time: Feb 08, 2023 at 07:55 PM
+-- Server version: 5.7.24
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,26 +18,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `tp_pendu`
+-- Database: `hangman`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `lexique`
+-- Table structure for table `game`
 --
 
-DROP TABLE IF EXISTS `lexique`;
-CREATE TABLE IF NOT EXISTS `lexique` (
+CREATE TABLE `game` (
+  `id` int(11) NOT NULL,
+  `player1` varchar(255) NOT NULL COMMENT 'Nom du joueur 1',
+  `player2` varchar(255) NOT NULL COMMENT 'Nom du joueur 2',
+  `word` varchar(255) DEFAULT NULL COMMENT 'Mot à deviner',
+  `winner` int(11) DEFAULT NULL COMMENT 'Numéro du joueur vainqueur',
+  `errors` int(11) DEFAULT NULL COMMENT 'Indique le nombre de coup utilisé avant la fin de partie'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lexicon`
+--
+
+CREATE TABLE `lexicon` (
   `ortho` varchar(80) DEFAULT NULL,
   `nblettres` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `lexique`
+-- Dumping data for table `lexicon`
 --
 
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('a capella', 9),
 ('a cappella', 10),
 ('a contrario', 11),
@@ -3118,9 +3131,9 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('affranchissais', 2),
 ('affranchissait', 0),
 ('affranchissant', 0),
-('affranchisse', 1);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
-('affranchissement', 16),
+('affranchisse', 1),
+('affranchissement', 16);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('affranchit', 13),
 ('affres', 6),
 ('affreuse', 8),
@@ -6285,10 +6298,10 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('annonciatrices', 14),
 ('annonciatrices', 14),
 ('annonciez', 0),
-('annoncions', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('annoncions', 0),
 ('annoncèrent', 0),
-('annoncé', 0),
+('annoncé', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('annoncée', 0),
 ('annoncées', 0),
 ('annoncés', 0),
@@ -9174,10 +9187,10 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ascèse', 6),
 ('ascèses', 7),
 ('ascète', 6),
-('ascètes', 7);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('ascètes', 7),
 ('ascétique', 9),
-('ascétiques', 10),
+('ascétiques', 10);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('ascétisme', 9),
 ('asdic', 5),
 ('ase', 3),
@@ -12242,11 +12255,11 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('bada', 0),
 ('badabam', 7),
 ('badaboum', 8),
-('badamier', 8);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('badamier', 8),
 ('badamiers', 9),
 ('badant', 0),
-('badaud', 6),
+('badaud', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('badaud', 6),
 ('badauda', 0),
 ('badaudaient', 0),
@@ -15479,11 +15492,11 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('blotti', 0),
 ('blottie', 7),
 ('blottie', 0),
-('blotties', 8);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('blotties', 8),
 ('blotties', 0),
 ('blottir', 1),
-('blottirai', 0),
+('blottirai', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('blottirait', 0),
 ('blottirent', 0),
 ('blottis', 7),
@@ -18710,12 +18723,12 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('butinés', 0),
 ('butoir', 6),
 ('butoirs', 7),
-('butons', 1);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('butons', 1),
 ('butor', 5),
 ('butors', 6),
 ('buts', 4),
-('butte', 5),
+('butte', 5);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('butte', 10),
 ('butter', 1),
 ('buttes', 6),
@@ -21903,11 +21916,11 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('catastrophas', 0),
 ('catastrophe', 11),
 ('catastropher', 1),
-('catastrophes', 12);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('catastrophes', 12),
 ('catastrophique', 14),
 ('catastrophiquement', 18),
-('catastrophiques', 15),
+('catastrophiques', 15);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('catastrophisme', 14),
 ('catastrophiste', 14),
 ('catastrophé', 0),
@@ -25014,13 +25027,13 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('cinquièmes', 10),
 ('cinquièmes', 10),
 ('cintra', 0),
-('cintrage', 8);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('cintrage', 8),
 ('cintrait', 0),
 ('cintrant', 0),
 ('cintras', 0),
 ('cintre', 6),
-('cintrer', 1),
+('cintrer', 1);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('cintres', 7),
 ('cintré', 0),
 ('cintré', 6),
@@ -28046,13 +28059,13 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('compteur', 8),
 ('compteurs', 9),
 ('comptez', 14),
-('comptiez', 1);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('comptiez', 1),
 ('comptine', 8),
 ('comptines', 9),
 ('comptions', 0),
 ('comptoir', 8),
-('comptoirs', 9),
+('comptoirs', 9);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('comptons', 1),
 ('comptât', 0),
 ('comptèrent', 0),
@@ -30842,13 +30855,13 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('convaincrez', 0),
 ('convaincrons', 0),
 ('convaincront', 0),
-('convaincs', 1);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('convaincs', 1),
 ('convaincu', 0),
 ('convaincu', 9),
 ('convaincu', 9),
 ('convaincue', 0),
-('convaincue', 10),
+('convaincue', 10);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('convaincues', 0),
 ('convaincues', 11),
 ('convaincus', 0),
@@ -33986,13 +33999,13 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('crénom', 6),
 ('créole', 6),
 ('créole', 6),
-('créoles', 7);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('créoles', 7),
 ('créoles', 7),
 ('créolophone', 11),
 ('créons', 1),
 ('créosote', 8),
-('créosotée', 0),
+('créosotée', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('crépi', 5),
 ('crépi', 0),
 ('crépie', 0),
@@ -37112,8 +37125,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('discutée', 0),
 ('discutée', 8),
 ('discutées', 0),
-('discutées', 9);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('discutées', 9),
 ('discutés', 0),
 ('dise', 3),
 ('disent', 3),
@@ -37122,7 +37134,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('dises', 0),
 ('disette', 7),
 ('disettes', 8),
-('diseur', 6),
+('diseur', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('diseurs', 7),
 ('diseuse', 7),
 ('diseuses', 8),
@@ -40223,8 +40236,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('décarrait', 0),
 ('décarrant', 0),
 ('décarre', 1),
-('décarrent', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('décarrent', 0),
 ('décarrer', 1),
 ('décarrerait', 0),
 ('décarres', 0),
@@ -40232,7 +40244,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('décarrés', 0),
 ('décathlon', 9),
 ('décathlons', 10),
-('décati', 6),
+('décati', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('décati', 0),
 ('décatie', 7),
 ('décatie', 0),
@@ -43243,8 +43256,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('démarrages', 10),
 ('démarrai', 0),
 ('démarraient', 0),
-('démarrais', 4);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('démarrais', 4),
 ('démarrait', 0),
 ('démarrant', 0),
 ('démarre', 1),
@@ -43252,7 +43264,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('démarrer', 1),
 ('démarrera', 0),
 ('démarrerai', 0),
-('démarreront', 0),
+('démarreront', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('démarres', 0),
 ('démarreur', 9),
 ('démarreurs', 10),
@@ -46180,8 +46193,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('déterminés', 10),
 ('déterra', 0),
 ('déterrage', 9),
-('déterraient', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('déterraient', 0),
 ('déterrais', 0),
 ('déterrait', 0),
 ('déterrant', 0),
@@ -46189,7 +46201,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('déterrent', 0),
 ('déterrer', 1),
 ('déterrera', 0),
-('déterrerai', 0),
+('déterrerai', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('déterrerait', 0),
 ('déterrerez', 0),
 ('déterreront', 0),
@@ -49203,8 +49216,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('enculade', 8),
 ('enculades', 9),
 ('enculage', 8),
-('enculant', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('enculant', 0),
 ('encule', 1),
 ('enculent', 0),
 ('enculer', 1),
@@ -49215,7 +49227,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('enculeries', 10),
 ('encules', 0),
 ('enculeur', 8),
-('enculeurs', 9),
+('enculeurs', 9);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('enculé', 0),
 ('enculé', 6),
 ('enculée', 0),
@@ -52203,8 +52216,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('esclavage', 9),
 ('esclavagea', 0),
 ('esclavager', 1),
-('esclavagisme', 12);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('esclavagisme', 12),
 ('esclavagiste', 12),
 ('esclavagiste', 12),
 ('esclavagistes', 13),
@@ -52214,7 +52226,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('esclave', 7),
 ('esclaves', 8),
 ('esclaves', 8),
-('esclavons', 9),
+('esclavons', 9);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('escogriffe', 10),
 ('escogriffes', 11),
 ('escomptai', 0),
@@ -55255,8 +55268,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('fantassins', 10),
 ('fantastique', 11),
 ('fantastique', 11),
-('fantastiquement', 15);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('fantastiquement', 15),
 ('fantastiques', 12),
 ('fantastiques', 12),
 ('fanti', 5),
@@ -55267,7 +55279,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('fantomatique', 12),
 ('fantomatiquement', 16),
 ('fantomatiques', 13),
-('fantôme', 7),
+('fantôme', 7);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('fantômes', 8),
 ('fanzine', 7),
 ('fanzines', 8),
@@ -58540,8 +58553,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('fourchets', 9),
 ('fourchette', 10),
 ('fourchettes', 11),
-('fourchez', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('fourchez', 0),
 ('fourchu', 7),
 ('fourchue', 8),
 ('fourchues', 9),
@@ -58553,7 +58565,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('fourgon', 7),
 ('fourgonnait', 0),
 ('fourgonnas', 0),
-('fourgonne', 0),
+('fourgonne', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('fourgonner', 1),
 ('fourgonnette', 12),
 ('fourgonnettes', 13),
@@ -61762,8 +61775,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('gerba', 0),
 ('gerbaient', 0),
 ('gerbais', 3),
-('gerbait', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('gerbait', 0),
 ('gerbant', 0),
 ('gerbe', 5),
 ('gerbe', 2),
@@ -61777,7 +61789,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('gerbeuses', 9),
 ('gerbier', 7),
 ('gerbille', 8),
-('gerbière', 8),
+('gerbière', 8);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('gerboise', 8),
 ('gerboises', 9),
 ('gerbèrent', 0),
@@ -65004,8 +65017,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('génotype', 8),
 ('génotypes', 9),
 ('génovéfains', 11),
-('génuflexion', 11);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('génuflexion', 11),
 ('génuflexions', 12),
 ('génuine', 7),
 ('génère', 2),
@@ -65016,7 +65028,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('généalogiques', 13),
 ('généalogiste', 12),
 ('généalogistes', 13),
-('général', 7),
+('général', 7);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('général', 7),
 ('générale', 8),
 ('générale', 8),
@@ -68109,8 +68122,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ignorés', 7),
 ('igné', 4),
 ('ignée', 5),
-('iguane', 6);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('iguane', 6),
 ('iguanes', 7),
 ('iguanodon', 9),
 ('iguanodons', 10),
@@ -68127,7 +68139,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('illettrisme', 11),
 ('illettré', 8),
 ('illettré', 8),
-('illettrée', 9),
+('illettrée', 9);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('illettrée', 9),
 ('illettrés', 9),
 ('illettrés', 9),
@@ -70944,8 +70957,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('informant', 0),
 ('informateur', 11),
 ('informateurs', 12),
-('informaticien', 13);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('informaticien', 13),
 ('informaticienne', 15),
 ('informaticiens', 14),
 ('informatif', 10),
@@ -70957,7 +70969,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('informatiques', 13),
 ('informatiser', 1),
 ('informatisé', 0),
-('informatisé', 11),
+('informatisé', 11);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('informatisée', 0),
 ('informatisée', 12),
 ('informatisées', 0),
@@ -73773,8 +73786,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('irréfléchis', 11),
 ('irréfragable', 12),
 ('irréfutable', 11),
-('irréfutablement', 15);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('irréfutablement', 15),
 ('irréfutables', 12),
 ('irrégularité', 12),
 ('irrégularités', 13),
@@ -73787,7 +73799,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('irrégulièrement', 15),
 ('irrégulières', 12),
 ('irréligieuse', 12),
-('irréligieux', 11),
+('irréligieux', 11);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('irréligiosité', 13),
 ('irrémissible', 12),
 ('irrémédiable', 12),
@@ -77110,8 +77123,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('limoger', 1),
 ('limoges', 0),
 ('limogé', 0),
-('limogé', 6);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('limogé', 6),
 ('limon', 5),
 ('limonade', 8),
 ('limonades', 9),
@@ -77133,7 +77145,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('limousines', 10),
 ('limousines', 10),
 ('limousins', 9),
-('limpide', 7),
+('limpide', 7);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('limpides', 8),
 ('limpidité', 9),
 ('limé', 0),
@@ -80337,8 +80350,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('marginal', 8),
 ('marginale', 9),
 ('marginalement', 13),
-('marginales', 10);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('marginales', 10),
 ('marginales', 10),
 ('marginalisant', 0),
 ('marginaliser', 1),
@@ -80359,7 +80371,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('margotte', 0),
 ('margottons', 0),
 ('margouillat', 11),
-('margouillats', 12),
+('margouillats', 12);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('margouillis', 11),
 ('margoulette', 11),
 ('margoulin', 9),
@@ -83493,8 +83506,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('moissonneuse', 12),
 ('moissonneuse-batteuse', 21),
 ('moissonneuse-lieuse', 19),
-('moissonneuses', 13);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('moissonneuses', 13),
 ('moissonneuses-batteuses', 23),
 ('moissonneuses-lieuses', 21),
 ('moissonnez', 6),
@@ -83518,7 +83530,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('mol', 3),
 ('molaire', 7),
 ('molaires', 8),
-('molard', 6),
+('molard', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('molasse', 7),
 ('molasse', 7),
 ('moldave', 7),
@@ -86641,8 +86654,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('napolitains', 11),
 ('napolitains', 11),
 ('napoléon', 8),
-('napoléonien', 11);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('napoléonien', 11),
 ('napoléonienne', 13),
 ('napoléoniennes', 14),
 ('napoléoniens', 12),
@@ -86671,7 +86683,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('narcisse', 8),
 ('narcisses', 9),
 ('narcissique', 11),
-('narcissiquement', 15),
+('narcissiquement', 15);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('narcissiques', 12),
 ('narcissisme', 11),
 ('narcissiste', 11),
@@ -89809,8 +89822,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ondoyaient', 0),
 ('ondoyait', 0),
 ('ondoyant', 8),
-('ondoyant', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('ondoyant', 0),
 ('ondoyante', 9),
 ('ondoyantes', 10),
 ('ondoyants', 9),
@@ -89839,7 +89851,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ondulons', 0),
 ('ondulèrent', 0),
 ('ondulé', 0),
-('ondulé', 6),
+('ondulé', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('ondulée', 0),
 ('ondulée', 7),
 ('ondulées', 0),
@@ -92964,8 +92977,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('parvenue', 0),
 ('parvenue', 8),
 ('parvenue', 8),
-('parvenues', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('parvenues', 0),
 ('parvenues', 9),
 ('parvenues', 9),
 ('parvenus', 0),
@@ -92993,7 +93005,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('parvînmes', 0),
 ('parvînt', 0),
 ('parâtre', 7),
-('paré', 0),
+('paré', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('paré', 4),
 ('parée', 0),
 ('parée', 5),
@@ -96081,8 +96094,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('piquetait', 0),
 ('piqueter', 1),
 ('piquetis', 8),
-('piquets', 7);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('piquets', 7),
 ('piquette', 8),
 ('piquettes', 9),
 ('piqueté', 0),
@@ -96113,7 +96125,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('piqué', 0),
 ('piqué', 5),
 ('piquée', 0),
-('piquée', 6),
+('piquée', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('piquées', 0),
 ('piquées', 7),
 ('piqués', 0),
@@ -99232,8 +99245,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('pourtours', 9),
 ('pourvoi', 7),
 ('pourvoie', 0),
-('pourvoient', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('pourvoient', 0),
 ('pourvoir', 1),
 ('pourvoira', 0),
 ('pourvoirai', 0),
@@ -99261,7 +99273,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('poussai', 0),
 ('poussaient', 0),
 ('poussais', 6),
-('poussait', 0),
+('poussait', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('poussant', 0),
 ('poussas', 0),
 ('pousse', 6),
@@ -102173,8 +102186,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('prétexter', 1),
 ('prétextes', 9),
 ('prétexté', 0),
-('prétoire', 8);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('prétoire', 8),
 ('prétoires', 9),
 ('prétorien', 9),
 ('prétorienne', 11),
@@ -102200,7 +102212,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('prévenaient', 0),
 ('prévenais', 3),
 ('prévenait', 0),
-('prévenance', 10),
+('prévenance', 10);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('prévenances', 11),
 ('prévenant', 9),
 ('prévenant', 0),
@@ -105247,8 +105260,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('raison', 6),
 ('raisonna', 0),
 ('raisonnable', 11),
-('raisonnablement', 15);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('raisonnablement', 15),
 ('raisonnables', 12),
 ('raisonnai', 0),
 ('raisonnaient', 0),
@@ -105273,7 +105285,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('raisonniez', 0),
 ('raisonnons', 1),
 ('raisonné', 0),
-('raisonné', 8),
+('raisonné', 8);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('raisonnée', 0),
 ('raisonnée', 9),
 ('raisons', 7),
@@ -108308,8 +108321,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('refiler', 1),
 ('refilera', 0),
 ('refilerait', 0),
-('refiles', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('refiles', 0),
 ('refilez', 6),
 ('refilé', 0),
 ('refilée', 0),
@@ -108338,7 +108350,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('refluent', 0),
 ('refluer', 1),
 ('refluera', 0),
-('reflux', 6),
+('reflux', 6);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('refluèrent', 0),
 ('reflué', 0),
 ('refluée', 0),
@@ -111362,8 +111375,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ressens', 1),
 ('ressent', 0),
 ('ressentaient', 0),
-('ressentais', 3);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('ressentais', 3),
 ('ressentait', 0),
 ('ressentant', 0),
 ('ressente', 3),
@@ -111388,7 +111400,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ressentiras', 0),
 ('ressentirent', 0),
 ('ressentirez', 0),
-('ressentiriez', 0),
+('ressentiriez', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('ressentirions', 0),
 ('ressentiront', 0),
 ('ressentis', 9),
@@ -114579,8 +114592,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('réanime', 1),
 ('réanimer', 1),
 ('réanimeraient', 0),
-('réanimez', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('réanimez', 0),
 ('réanimions', 0),
 ('réanimé', 0),
 ('réanimée', 0),
@@ -114603,7 +114615,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('réapparition', 12),
 ('réapparitions', 13),
 ('réapparu', 0),
-('réapparue', 0),
+('réapparue', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('réapparues', 0),
 ('réapparurent', 0),
 ('réapparus', 0),
@@ -117602,8 +117615,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('saillant', 8),
 ('saillant', 0),
 ('saillante', 9),
-('saillantes', 10);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('saillantes', 10),
 ('saillants', 9),
 ('saille', 0),
 ('saillent', 0),
@@ -117634,7 +117646,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('saint-glinglin', 14),
 ('saint-guy', 9),
 ('saint-honoré', 12),
-('saint-hubert', 12),
+('saint-hubert', 12);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('saint-michel', 12),
 ('saint-nectaire', 14),
 ('saint-paulin', 12),
@@ -120786,8 +120799,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('sirotait', 0),
 ('sirotant', 0),
 ('sirote', 1),
-('sirotent', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('sirotent', 0),
 ('siroter', 1),
 ('siroterais', 0),
 ('sirotiez', 0),
@@ -120821,7 +120833,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('sitcom', 6),
 ('sitcoms', 7),
 ('site', 4),
-('sites', 5),
+('sites', 5);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('sittelle', 8),
 ('situ', 4),
 ('situa', 0),
@@ -123854,8 +123867,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('stérilisez', 10),
 ('stérilisé', 0),
 ('stérilisé', 9),
-('stérilisée', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('stérilisée', 0),
 ('stérilisée', 10),
 ('stérilisées', 0),
 ('stérilisées', 11),
@@ -123884,7 +123896,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('stéréotypés', 0),
 ('stéréotypés', 11),
 ('stéthoscope', 11),
-('stéthoscopes', 12),
+('stéthoscopes', 12);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('su', 0),
 ('su', 2),
 ('sua', 0),
@@ -126862,8 +126875,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('tahitienne', 10),
 ('tahitienne', 10),
 ('tahitiennes', 11),
-('tahitiennes', 11);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('tahitiennes', 11),
 ('tahitiens', 9),
 ('tai-chi', 7),
 ('taie', 4),
@@ -126899,7 +126911,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('taille-haies', 12),
 ('taillent', 0),
 ('tailler', 1),
-('taillera', 0),
+('taillera', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('taillerai', 0),
 ('taillerais', 3),
 ('taillerait', 0),
@@ -130119,8 +130132,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('toutous', 7),
 ('touts', 5),
 ('toux', 4),
-('toué', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('toué', 0),
 ('toxicité', 8),
 ('toxico', 6),
 ('toxico', 6),
@@ -130155,7 +130167,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('tracassera', 0),
 ('tracasserais', 0),
 ('tracasserait', 0),
-('tracasserie', 11),
+('tracasserie', 11);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('tracasseries', 12),
 ('tracasserons', 0),
 ('tracasses', 0),
@@ -133147,8 +133160,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('téléfaxe', 0),
 ('téléfaxez', 0),
 ('téléfilm', 8),
-('téléfilms', 9);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('téléfilms', 9),
 ('téléfériques', 12),
 ('télégramme', 10),
 ('télégrammes', 11),
@@ -133177,7 +133189,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('télégraphiées', 0),
 ('télégraphiés', 0),
 ('téléguidage', 11),
-('téléguider', 1),
+('téléguider', 1);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('téléguidé', 0),
 ('téléguidée', 0),
 ('téléguidées', 0),
@@ -136384,8 +136397,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('voisinait', 0),
 ('voisinant', 0),
 ('voisine', 7),
-('voisine', 7);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('voisine', 7),
 ('voisine', 0),
 ('voisinent', 0),
 ('voisiner', 1),
@@ -136422,7 +136434,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('volage', 6),
 ('volages', 7),
 ('volai', 0),
-('volaient', 0),
+('volaient', 0);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('volaille', 8),
 ('volailler', 9),
 ('volaillers', 10),
@@ -139632,8 +139645,7 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('élargis', 0),
 ('élargissaient', 0),
 ('élargissait', 0),
-('élargissant', 0);
-INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
+('élargissant', 0),
 ('élargissement', 13),
 ('élargissent', 0),
 ('élargissez', 0),
@@ -139666,7 +139678,8 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('électricien', 11),
 ('électricienne', 13),
 ('électriciennes', 14),
-('électriciens', 12),
+('électriciens', 12);
+INSERT INTO `lexicon` (`ortho`, `nblettres`) VALUES
 ('électricité', 11),
 ('électrifia', 0),
 ('électrifiait', 0),
@@ -142722,22 +142735,25 @@ INSERT INTO `lexique` (`ortho`, `nblettres`) VALUES
 ('ôtés', 0),
 ('ôtés', 4);
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `partie`
+-- Indexes for dumped tables
 --
 
-DROP TABLE IF EXISTS `partie`;
-CREATE TABLE IF NOT EXISTS `partie` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_joueur1` varchar(255) NOT NULL COMMENT 'Nom du joueur 1',
-  `nom_joueur2` varchar(255) NOT NULL COMMENT 'Nom du joueur 2',
-  `mot` varchar(255) DEFAULT NULL COMMENT 'Mot à deviner',
-  `victoire` int(11) DEFAULT NULL COMMENT 'Numéro du joueur vainqueur',
-  `nb_coup` int(11) DEFAULT NULL COMMENT 'Indique le nombre de coup utilisé avant la fin de partie',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+--
+-- Indexes for table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `game`
+--
+ALTER TABLE `game`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

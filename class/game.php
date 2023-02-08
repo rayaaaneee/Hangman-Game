@@ -5,7 +5,6 @@ class Game
     private string $pseudo1;
     private string $pseudo2;
     private string $word;
-    private int $id;
     private string $wordChooser;
     private string $wordSearcher;
     private ?string $winnerName = null;
@@ -26,9 +25,7 @@ class Game
             $this->wordSearcher = $pseudo1;
         }
 
-        $db = Connection::getInstance()->getPDO();
-
-        $lastID = $db->exec("SELECT MAX(id) FROM partie");
+        $gameDAO = new GameDAO();
 
         if ($word != null) {
             $this->word = $word;
@@ -40,7 +37,6 @@ class Game
             $this->Errors = $Errors;
         }
 
-        $this->id = $lastID + 1;
 
         $this->setAllLetters();
     }
@@ -75,11 +71,6 @@ class Game
         return strlen($this->word);
     }
 
-    public function getID()
-    {
-        return $this->id;
-    }
-
     public function getWinnerName()
     {
         return $this->winnerName;
@@ -107,7 +98,6 @@ class Game
     public function tryLetter($letter)
     {
         if ($this->isFinished()) {
-            $this->setWinnerName();
             return;
         }
         $letter = strtoupper($letter);
@@ -146,6 +136,11 @@ class Game
     public function getFalseLetters()
     {
         return $this->falseLetters;
+    }
+
+    public function setErrors($Errors)
+    {
+        $this->Errors = $Errors;
     }
 
     public function getErrors()
@@ -237,16 +232,16 @@ class Game
     {
         $word = $this->getWord();
         $word = strtoupper($word);
+
         $result = true;
 
         for ($i = 0; $i < $this->getNbChars(); $i++) {
-            if (!in_array($word[$i], $this->trueLetters)) {
-                $result = false;
+            if (!in_array($word[$i], $this->trueLetters) && $word[$i] != ' ') {
+                if ($this->Errors < 10) {
+                    $result = false;
+                    break;
+                }
             }
-        }
-
-        if ($this->Errors < 10) {
-            $result = false;
         }
 
         return $result;

@@ -1,6 +1,7 @@
 <?php require_once 'header.php';
 require_once PATH_DTO . 'GameDTO.php';
 
+$gameDTO = new GameDTO();
 $game = unserialize($_SESSION['game']);
 
 if (isset($_POST['word'])) {
@@ -18,6 +19,16 @@ if (isset($_POST['word'])) {
 }
 
 $game->saveInSession();
+
+if ($game->isFinished()) {
+    // Envoyer en POST le gagnant de la partie
+    $game->setWinnerName();
+    $game->saveInSession();
+
+    $gameDTO->insert($game);
+
+    header('Location: ./winner.php');
+}
 
 ?>
 <div class="main-container-game-page">

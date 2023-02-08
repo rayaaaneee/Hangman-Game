@@ -9,10 +9,11 @@ define('PATH_CLASSES', './class/');
 define('PATH_DATABASE', PATH_CLASSES . 'database/');
 define('PATH_DAO', PATH_DATABASE . 'dao/');
 define('PATH_DTO', PATH_DATABASE . 'dto/');
+define('PATH_MEDIA', PATH_CSS . 'media/');
 
 // Database
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'pendu');
+define('DB_NAME', 'hangman');
 define('DB_PORT', '8889');
 define('DB_CHARSET', 'utf8mb4');
 

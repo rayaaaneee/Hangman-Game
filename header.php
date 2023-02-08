@@ -34,5 +34,6 @@ require_once PATH_CLASSES . 'game.php';
 <body>
     <header>
         <h1 class="title-page">Le Pendu</h1>
+        <div class="separator-bar"></div>
         <h2 class="subtitle-page">Par Rayane Merlin</h2>
     </header>
