@@ -29,10 +29,23 @@ $games = $dao->getLastGames();
                         <div class="text-container-winner">
                             <p class="surlign-text"><?= $game['winner']; ?></p>
                             <p>a gagné, il a retrouvé le mot "</p>
-                            <p class="surlign-text"><?= $game['word'] ?></p>
-                            <p>" en</p>
-                            <p class="surlign-text"><?= $game['errors']; ?></p>
-                            </p> erreurs !</p>
+                            <p class="surlign-text"><?= strtolower($game['word']); ?></p>
+                            <?php if ($game['errors'] > 1) {
+                            ?>
+                                <p>" en </p>
+                                <p class="surlign-text"><?= $game['errors']; ?></p>
+                            <?php
+                                $text = "erreurs !";
+                            } else if ($game['errors'] == 1) {
+                            ?>
+                                <p>" en </p>
+                                <p class="surlign-text"><?= $game['errors']; ?></p>
+                            <?php
+                                $text = "erreur !";
+                            } else {
+                                $text = '" sans erreurs !';
+                            } ?>
+                            <p><?= $text; ?></p>
                         </div>
                     </div>
                 </div>
