@@ -13,18 +13,37 @@ $games = $dao->getLastGames();
             <img src="<?= PATH_IMG ?>clock.png" alt="logo" class="logo-recent-events" draggable="false" />
             <h2>Dernières parties : </h2>
         </div>
+        <div class="separator-bar"></div>
         <div class="all-informations-games">
             <?php
             $i = 0;
             foreach ($games as $game) { ?>
                 <div class="game">
-                    <p><?= $game['player1']; ?> a joué contre <?= $game['player2']; ?> !</p>
                     <img src="<?= PATH_IMG ?>crown.png" alt="crown" class="logo-winner" draggable="false" />
-                    <p><?= $game['winner']; ?> est le grand vainqueur, il a retrouvé le mot "<?= $game['word'] ?>" en <?= $game['errors']; ?> erreurs !</p>
+                    <div class="text-container">
+                        <div class="text-container-players">
+                            <p class="surlign-text"><?= $game['player1']; ?></p>
+                            <p>a joué contre </p>
+                            <p class="surlign-text"><?= $game['player2']; ?> !</p>
+                        </div>
+                        <div class="text-container-winner">
+                            <p class="surlign-text"><?= $game['winner']; ?></p>
+                            <p>a gagné, il a retrouvé le mot "</p>
+                            <p class="surlign-text"><?= $game['word'] ?></p>
+                            <p>" en</p>
+                            <p class="surlign-text"><?= $game['errors']; ?></p>
+                            </p> erreurs !</p>
+                        </div>
+                    </div>
                 </div>
             <?php $i++;
             }
-            ?>
+
+            if ($i == 0) { ?>
+                <div class="no-game-container">
+                    <p class="no-games">Aucune partie n'a encore été jouée,</br> faite des parties et elles s'afficheront ici !</p>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <div class="container-index-page main-container-start-game">

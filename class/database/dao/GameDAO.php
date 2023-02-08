@@ -25,7 +25,7 @@ class GameDAO
 
     public function getLastGames()
     {
-        $sql = "SELECT * FROM game";
+        $sql = "SELECT * FROM game ORDER BY id DESC LIMIT 7";
 
         $res = $this->db->query($sql)->fetchAll();
 
